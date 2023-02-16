@@ -64,7 +64,7 @@
 // }
 
 
-console.log("github");
+let dis = document.getElementById('errorDisp')
 const pageNumberH3 = document.querySelector('.page')
 var pageNumber = 1;
 
@@ -74,10 +74,20 @@ async function fetchData(pageNumber) {
   );
   const data = await response.json();
   console.log("DATA", data);
+  let key = Object.keys(data)
+  let val = Object.values(data)
+  display(data, key,val)
 }
-
+function display(data,key,val){
+console.log(pageNumber);
+    // dis.innerHTML = `<li>${key[0]} : ${val[0]}</li>`
+    for (let i = 0; i < data.length; i++) {
+      dis.innerHTML = `<li>${key[i]} : ${val[i]}</li>`
+    }  
+  }
 function loadNext() {
   pageNumber++;
+  console.log(pageNumber);
   if (pageNumber == 2) {
     document.getElementById("load_prev").disabled = false;
   }
@@ -86,6 +96,7 @@ function loadNext() {
 }
 
 function loadPrev() {
+  console.log(pageNumber);
   if (pageNumber == 2) {
     document.getElementById("load_prev").disabled = true;
   } else {
